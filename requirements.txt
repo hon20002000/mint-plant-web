@@ -2,3 +2,5 @@ streamlit
 pandas
 openpyxl
 Pillow
+paho-mqtt
+streamlit-autorefresh
