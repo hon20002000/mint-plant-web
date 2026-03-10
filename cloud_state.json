@@ -1,12 +1,12 @@
 {
-  "timestamp": "1970-01-01T00:10:00Z",
-  "soil": 12,
-  "light": 944,
-  "temp": 17.7,
-  "hum": 27,
-  "H_sensor": 25,
+  "timestamp": "1970-01-01T00:15:00Z",
+  "soil": 14,
+  "light": 161,
+  "temp": 10.5,
+  "hum": 16,
+  "H_sensor": 40,
   "H_image": 50.0,
-  "H_total": 37.5,
+  "H_total": 45.0,
   "mood": "cold",
   "level": "too_cold"
 }
