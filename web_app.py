@@ -9,18 +9,19 @@ from streamlit_autorefresh import st_autorefresh
 
 # ============ 路徑與圖像設定 ============
 
-BASE_DIR = pathlib.Path(__file__).parent          # mint-plant-web/
-CLOUD_STATE_JSON = BASE_DIR / "cloud_state.json" # app.py 每分鐘同步上來的快照
+BASE_DIR = pathlib.Path(__file__).parent           # mint-plant-web/
+CLOUD_STATE_JSON = BASE_DIR / "cloud_state.json"   # app.py 同步上來的快照
 FACES_DIR = BASE_DIR / "faces"
 
 MOOD_IMAGE_MAP = {
     "happy": "happy.png",
     "calm": "calm.png",
     "sad": "sad.png",
-    "sick": "sick.png",
     "hot": "hot.png",
     "cold": "cold.png",
-    "lonely": "lonely.png",
+    "dry": "dry.png",
+    "moist": "moist.png",
+    "curious": "curious.png",
 }
 DEFAULT_IMAGE = "calm.png"
 
@@ -33,7 +34,9 @@ st.set_page_config(
 )
 
 st.title("🌱 薄荷植物寵物儀表板（雲端快照版）")
-st_autorefresh(interval=5000, key="auto_refresh")
+
+# 每 10 秒自動重新整理一次
+st_autorefresh(interval=10_000, key="auto_refresh")
 
 # ============ 讀取 cloud_state.json ============
 
@@ -64,6 +67,7 @@ H_image = state.get("H_image")
 H_total = state.get("H_total")
 mood = state.get("mood") or "calm"
 level = state.get("level")
+dialog = state.get("dialog")
 
 # ============ 上半部：表情圖片 + 健康指標 ============
 
@@ -80,8 +84,13 @@ with col1:
 
 with col2:
     st.markdown(f"### 目前心情：**{mood}**")
+
+    if isinstance(dialog, str):
+        st.markdown(f"**植物說：** {dialog}")
+
     if isinstance(level, str):
         st.write(f"健康狀態等級：{level}")
+
     if isinstance(ts, str):
         st.write(f"最後更新時間：{ts}")
 
@@ -103,5 +112,5 @@ st.write(
 
 st.caption(
     "此頁面顯示的是來自 GitHub 上 cloud_state.json 的最新快照。\n"
-    "本地 app.py 每約 1 分鐘同步一次狀態到 GitHub。"
+    "本地 app.py 約每 30 秒同步一次狀態到 GitHub，本頁每 10 秒自動刷新。"
 )
