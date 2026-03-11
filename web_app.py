@@ -9,8 +9,8 @@ from streamlit_autorefresh import st_autorefresh
 
 # ============ 路徑與圖像設定 ============
 
-BASE_DIR = pathlib.Path(__file__).parent           # mint-plant-web/
-CLOUD_STATE_JSON = BASE_DIR / "cloud_state.json"   # app.py 同步上來的快照
+BASE_DIR = pathlib.Path(__file__).parent
+CLOUD_STATE_JSON = BASE_DIR / "cloud_state.json"
 FACES_DIR = BASE_DIR / "faces"
 
 MOOD_IMAGE_MAP = {
@@ -69,48 +69,49 @@ mood = state.get("mood") or "calm"
 level = state.get("level")
 dialog = state.get("dialog")
 
-# ============ 上半部：表情圖片 + 健康指標 ============
+# ============ 分頁：總覽 / 感測數據 ============
 
-col1, col2 = st.columns([1, 1])
+tab_overview, tab_env = st.tabs(["🌿 植物狀態總覽", "📊 環境感測數據"])
 
-with col1:
-    img_name = MOOD_IMAGE_MAP.get(mood, DEFAULT_IMAGE)
-    img_path = FACES_DIR / img_name
-    if img_path.exists():
-        st.image(str(img_path), width=220)
-    else:
-        st.write(f"找不到對應表情圖片：faces/{img_name}")
-        st.write("請確認你已在 repo 的 faces/ 目錄中上傳這張圖。")
+# ---- 頁籤 1：臉 + 心情 + 指標 ----
+with tab_overview:
+    col1, col2 = st.columns([1, 1])
 
-with col2:
-    st.markdown(f"### 目前心情：**{mood}**")
+    with col1:
+        img_name = MOOD_IMAGE_MAP.get(mood, DEFAULT_IMAGE)
+        img_path = FACES_DIR / img_name
+        if img_path.exists():
+            st.image(str(img_path), width=220)
+        else:
+            st.write(f"找不到對應表情圖片：faces/{img_name}")
+            st.write("請確認你已在 repo 的 faces/ 目錄中上傳這張圖。")
 
-    if isinstance(dialog, str):
-        st.markdown(f"**植物說：** {dialog}")
+    with col2:
+        st.markdown(f"### 目前心情：**{mood}**")
 
-    if isinstance(level, str):
-        st.write(f"健康狀態等級：{level}")
+        if isinstance(dialog, str):
+            st.markdown(f"**植物說：** {dialog}")
 
-    if isinstance(ts, str):
-        st.write(f"最後更新時間：{ts}")
+        if isinstance(level, str):
+            st.write(f"健康狀態等級：{level}")
 
-    st.write("### 健康指標")
-    c1, c2, c3 = st.columns(3)
-    c1.metric("H_sensor", f"{H_sensor:.1f}" if isinstance(H_sensor, (int, float)) else "--")
-    c2.metric("H_image", f"{H_image:.1f}" if isinstance(H_image, (int, float)) else "--")
-    c3.metric("H_total", f"{H_total:.1f}" if isinstance(H_total, (int, float)) else "--")
+        st.write("### 健康指標")
+        c1, c2, c3 = st.columns(3)
+        c1.metric("H_sensor", f"{H_sensor:.1f}" if isinstance(H_sensor, (int, float)) else "--")
+        c2.metric("H_image", f"{H_image:.1f}" if isinstance(H_image, (int, float)) else "--")
+        c3.metric("H_total", f"{H_total:.1f}" if isinstance(H_total, (int, float)) else "--")
 
-# ============ 下半部：環境感測數據 ============
+    st.caption(
+        "本頁顯示的是來自 GitHub cloud_state.json 的最新狀態快照。\n"
+        "本地 app.py 約每 30 秒同步一次狀態，本頁每 10 秒自動刷新。"
+    )
 
-st.markdown("### 當前環境與感測數據")
-st.write(
-    f"- 土壤濕度 soil：**{soil}**\n"
-    f"- 光照強度 light：**{light}**\n"
-    f"- 溫度 temp：**{temp} °C**\n"
-    f"- 空氣濕度 hum：**{hum} %**"
-)
-
-st.caption(
-    "此頁面顯示的是來自 GitHub 上 cloud_state.json 的最新快照。\n"
-    "本地 app.py 約每 30 秒同步一次狀態到 GitHub，本頁每 10 秒自動刷新。"
-)
+# ---- 頁籤 2：環境感測數據 ----
+with tab_env:
+    st.markdown("### 當前環境與感測數據")
+    st.write(
+        f"- 土壤濕度 soil：**{soil}**\n"
+        f"- 光照強度 light：**{light}**\n"
+        f"- 溫度 temp：**{temp} °C**\n"
+        f"- 空氣濕度 hum：**{hum} %**"
+    )
