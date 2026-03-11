@@ -1,13 +1,13 @@
 {
-  "timestamp": "2026-03-11T17:21:03Z",
-  "soil": 68,
-  "light": 579,
-  "temp": 22.0,
-  "hum": 46,
+  "timestamp": "2026-03-11T17:26:43Z",
+  "soil": 69,
+  "light": 578,
+  "temp": 22.9,
+  "hum": 47,
   "H_sensor": 100.0,
   "H_image": 100.0,
   "H_total": 100.0,
   "mood": "happy",
   "level": "healthy",
-  "dialog": "今天好舒服，葉子都在跳舞，謝謝你～"
+  "dialog": "陽光和水分都剛剛好，我覺得很快樂！"
 }
