@@ -1,6 +1,14 @@
 streamlit
 pandas
-openpyxl
 Pillow
 paho-mqtt
-streamlit-autorefresh
+streamlit>=1.32.0
+streamlit-autorefresh>=0.1.0
+streamlit-mic-recorder>=0.0.8
+perplexityai>=0.7.0
+google-cloud-speech>=2.26.0
+paho-mqtt>=1.6.1
+opencv-python>=4.9.0.80
+ultralytics>=8.1.0
+openpyxl>=3.1.2
+requests>=2.31.0
