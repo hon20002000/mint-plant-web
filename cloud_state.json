@@ -1,13 +1,13 @@
 {
-  "timestamp": "2026-03-11T16:49:06Z",
-  "soil": 67,
-  "light": 535,
-  "temp": 20.9,
-  "hum": 55,
+  "timestamp": "2026-03-11T17:00:57Z",
+  "soil": 70,
+  "light": 539,
+  "temp": 22.8,
+  "hum": 49,
   "H_sensor": 100,
-  "H_image": 100.0,
-  "H_total": 100.0,
-  "mood": "happy",
-  "level": "excellent",
-  "dialog": "我狀態很好，可以再陪我說說話嗎？"
+  "H_image": 50.0,
+  "H_total": 75.0,
+  "mood": "calm",
+  "level": "good",
+  "dialog": "感覺挺安穩的，只要繼續這樣就很好～"
 }
