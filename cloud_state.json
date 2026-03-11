@@ -1,12 +1,13 @@
 {
-  "timestamp": "1970-01-01T00:59:00Z",
-  "soil": 19,
-  "light": 393,
-  "temp": 17.7,
-  "hum": 13,
-  "H_sensor": 40,
-  "H_image": 50.0,
-  "H_total": 45.0,
-  "mood": "cold",
-  "level": "too_cold"
+  "timestamp": "2026-03-11T16:49:06Z",
+  "soil": 67,
+  "light": 535,
+  "temp": 20.9,
+  "hum": 55,
+  "H_sensor": 100,
+  "H_image": 100.0,
+  "H_total": 100.0,
+  "mood": "happy",
+  "level": "excellent",
+  "dialog": "我狀態很好，可以再陪我說說話嗎？"
 }
