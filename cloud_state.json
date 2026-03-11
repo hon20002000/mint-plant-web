@@ -8,5 +8,5 @@
   "H_image": 50.0,
   "H_total": 45.0,
   "mood": "cold",
-  "level": "too_cold"
+  "dialog": "溫度有點低，你可以幫我找個溫暖地方嗎？"
 }
